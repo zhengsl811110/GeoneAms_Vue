@@ -1,0 +1,145 @@
+﻿html, body {
+    margin: 0;
+    padding:0;
+    background-color: #F5F5F5;
+    overflow: hidden;
+}
+
+header{
+    padding: 5px 15px 2px 0;
+}
+header input{
+    width: 160px;
+}
+header .el-form-item__label{padding-top: 8px;}
+header .el-form-item__content{line-height: 30px;}
+header .el-form-item{margin-bottom: 0;}
+.dialog input{width: 227px;}
+.dialog .el-dialog--auto{width: 700px;}
+.dialog .el-dialog__body{padding: 20px 20px 0;}
+.dialog .el-dialog__footer{padding: 10px 35px 15px;}
+.full{width: 556px !important;}
+.full>input{width: 556px !important;}
+.full>textarea{width: 556px !important;}
+.full input{width: 556px !important;}
+.grid-height{overflow-y: auto;height: 500px;border: 1px solid #4db3ff}
+.grid-center{ padding-top: 100px;line-height: 100px;}
+.grid-center>div{text-align: center;}
+.el-date-editor.el-input{width: 227px;}
+.dialog-footer{    
+    padding: 0 15px 20px 0;
+    text-align: right;
+}
+.bookList {
+    padding: 0;
+    margin: 0;
+}
+.bookList>li {
+    display: block; /*内联对象需加*/
+    padding: 0 10px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    word-break: keep-all; /* 不换行 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow: ellipsis;
+}
+.bookList>li:hover {
+    background:lightblue;
+    color: white;
+}
+.bookList>li.active {
+    background:lightblue;
+    color: white;
+}
+/********查询文本部分*********/
+.Container {
+    /*padding: 15px;*/
+    /*width: 100%;*/
+    /*border-bottom: 1px solid #D7D4CF*/
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    background-color: white !important;
+    border: 1px solid #D7D4CF;
+}
+
+.queryContainer {
+    padding: 0 5px;
+    height: 50px;
+    line-height: 50px;
+}
+.queryContainer>.btn-search{
+    padding: 5px 12px !important;
+}
+.queryContainer>.btn-search:hover {
+    color: white !important;
+}
+
+.toolbar {
+    float: right;
+    line-height: 26px;
+}
+
+ i {
+     margin-right: 4px;
+ }
+/*修改grid样式*/
+.grid {
+    /*float: left; !* margin-top:70px; *!*/
+    /*margin-left: 5px;*/
+    background-color:white;
+}
+.grid i{
+    font-size: 20px;
+}
+.l-panel {
+    border-left: 0 !important;
+    border-right: 0 !important;
+}
+.l-grid-header,.l-grid-row-cell-rownumbers,.l-panel-bar {
+    background-color: white !important;
+}
+.l-grid-row-cell-checkbox span, .l-grid-hd-cell-checkbox .l-grid-hd-cell-inner div{
+    margin-left: 8px !important;
+    margin-top: 10px !important;
+}
+.l-grid .l-grid-grouprow {
+    border-right: 1px solid #D0CCC7 !important;
+}
+.l-grid .l-grid-grouprow-cell {
+    padding: 8px;
+    border-bottom: 1px solid #D0CCC7 !important;
+    font-weight: 500;
+    background: white !important;
+}
+
+/*chorme 滚动条样式*/
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+}
+body::-webkit-scrollbar-track-piece {
+    background-color: white;
+}
+::-webkit-scrollbar-track-piece:no-button {}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(88, 88, 88, 0.86);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #659394;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #666;
+}
+::-webkit-scrollbar-button:vertical { width: 9px; }
+::-webkit-scrollbar-button:horizontal { width: 9px; }
+::-webkit-scrollbar-button:vertical:start:decrement { background-color: white; }
+::-webkit-scrollbar-button:vertical:end:increment { background-color: white; }
+::-webkit-scrollbar-button:horizontal:start:decrement { background-color: white; }
+::-webkit-scrollbar-button:horizontal:end:increment { background-color: white; }
