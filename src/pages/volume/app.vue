@@ -40,7 +40,7 @@
                     </div>
                 </el-col>
                 <el-col :span="10">
-                    <label>待组卷</label>
+                    <label>已组卷</label>
                     <div class='grid-content'>
                         <ul class="bookList">
                             <li v-for="(book,index) in rightBook" @click="onRightSelected(index,book)" :class="{active:index == r}">{{book.cbt}}</li>
@@ -70,6 +70,7 @@ import vVolumn from 'components/vVolumn.vue'
 import  {getQueryString,getGridSelectedRow,ServerUrl,BmConfig} from 'config/config.js'
 import  LigerGrid from 'config/grid.js'
 import  Server from 'config/server.js'
+const bmConfig = BmConfig[getQueryString("bm")];
 
 let g=null;
 let checkedID=[];
@@ -98,11 +99,11 @@ export default {
         var grid=new LigerGrid(ServerUrl.volume.grid);
         console.log(ServerUrl.volume.data);
         grid.getConfig({
-            checkbox: this.form=='edit'?true:false,
+            checkbox: this.from=='edit'?true:false,
             rownumbers: true,
             rowDraggable: false,
-            pageSize: 20,
-            pageSizeOptions: [10, 20, 50],
+            pageSize: bmConfig.pageSize||50,
+            pageSizeOptions:bmConfig.pageSizeOptions||[50, 100],
             url:ServerUrl.volume.data,
             parms:{
                 sortname: "splxcode,xh",

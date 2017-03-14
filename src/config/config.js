@@ -119,7 +119,9 @@ export const BmConfig={
         bookGridName: "AMS_Book_FC",
         fileGridName: "AMS_File",
         rowDraggable: false,
-        bzdw:"苏州宿迁工业园区房地产交易管理中心"
+        bzdw:"苏州宿迁工业园区房地产交易管理中心",
+        pageSize:1000,
+        pageSizeOptions:[1000]
     },
     gt: {
         name: "国土",
