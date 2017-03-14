@@ -4,7 +4,7 @@
         <header>
             <div class="toolbar" style="float:left;margin-left:20px;">
                 <template v-for="(type,index) in typeList">
-                    <el-button type="primary" size="small" @click="onGoVolume(type.name,index)" :class="{activeBtn:activeId==index}">{{type.label}}({{type.total}})</el-button>
+                    <el-button type="primary" size="small" @click="onGoVolume(type.name,index)" :class="{activeBtn:activeName==type.name}">{{type.label}}({{type.total}})</el-button>
                 </template>
             </div>
             <div class="toolbar">
@@ -95,7 +95,7 @@ export default {
             rightBook:[],
             l:-1,
             r:-1,
-            activeId:0
+            activeName:0
         }
     },
     components: {
@@ -173,7 +173,9 @@ export default {
         close(){
             this.l=-1;
             this.r=-1;
+            checkedID=[];
             g.reload();
+            this.initType();
         },
         onAdd(){
             this.form=this.initForm();
@@ -369,7 +371,7 @@ export default {
             }
         },
         onGoVolume(type,index){
-            this.activeId=index;
+            this.activeName=type;
             checkedID=[];
             g.options.newPage = 1;
             g.options.parms.splxcode = type;
