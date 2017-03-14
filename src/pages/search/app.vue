@@ -2,7 +2,12 @@
   <div >
     <vContainer>
         <header>
-            <el-form label-width="80px" class="el-form--inline" style="float: left;">
+            <el-form label-width="80px" class="el-form--inline" style="float: left;">、
+                <el-form-item label="部门">
+                    <el-select v-model="bm" placeholder="请选择" size="small" style="width:120px;">
+                        <el-option v-for="item in bmList" :label="item.label" :value="item.value"></el-option>
+                    </el-select>
+                </el-form-item>
                 <el-form-item label="项目号">
                     <el-input v-model="xmh" size="small" @keyup.enter="onSearch"></el-input>
                 </el-form-item>
@@ -45,9 +50,12 @@ import  {getQueryString,getGridSelectedRow,ServerUrl} from 'config/config.js'
 import  LigerGrid from 'config/grid.js'
 
 let g=null;
+let bmConfig=parent.window.getDictionarySelectByType("BMLX");
 export default {
     data(){
         return{
+            bm:"",
+            bmList:bmConfig.selectList,
             xmh:"",
             xmmc:"",
             dkh: getQueryString("dkh")||""
@@ -66,6 +74,7 @@ export default {
                 parms:{
                     sortname: "bm",
                     sortorder: "asc",
+                    bm:this.bm,
                     xmh: "",
                     xmmc: "",
                     dkh: this.dkh
@@ -86,6 +95,7 @@ export default {
         },
         search(){
             g.options.newPage = 1;
+            g.options.parms.bm = this.bm;
             g.options.parms.xmh = this.xmh;
             g.options.parms.xmmc =this.xmmc;
             g.options.parms.dkh =this.dkh;

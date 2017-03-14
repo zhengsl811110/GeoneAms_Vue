@@ -35,7 +35,8 @@ export const ServerUrl = {
         del: baseUrl + "execute?appid="+AppId+"&Servicename=deleteVolumeService",
         order: baseUrl + "execute?appid="+AppId+"&Servicename=orderVolumeService",
         bookToVolume: baseUrl + "query?appid="+AppId+"&Servicename=bookToVolumeService",
-        setVolume: baseUrl + "execute?appid="+AppId+"&Servicename=setVolumeService"
+        setVolume: baseUrl + "execute?appid="+AppId+"&Servicename=setVolumeService",
+        applyType:baseUrl + "getBQueryResult?appid="+AppId+"&name=applyType",
     },
     apply: {
         grid: baseUrl + "gridcols?appid="+AppId+"&gridname=",
@@ -109,7 +110,9 @@ export const BmConfig={
         projectGridName: "AMS_Project",
         applyGridName: "AMS_Apply_GH",
         bookGridName: "AMS_Book",
-        fileGridName: "AMS_File"
+        fileGridName: "AMS_File",
+        pageSize:200,
+        pageSizeOptions:[200]
     },
     fc: {
         name: "房产",

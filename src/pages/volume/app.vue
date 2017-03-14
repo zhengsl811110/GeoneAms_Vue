@@ -1,19 +1,25 @@
 <template>
   <div class="innercontext">
     <vContainer  v-loading.full.screen.lock="loading" element-loading-text="正在生成备考表,请稍后..." >
-        <header v-show="from=='edit'">   
+        <header>
+            <div class="toolbar" style="float:left;margin-left:20px;">
+                <template v-for="(type,index) in typeList">
+                    <el-button type="primary" size="small" @click="onGoVolume(type.name,index)" :class="{activeBtn:activeId==index}">{{type.label}}({{type.total}})</el-button>
+                </template>
+            </div>
             <div class="toolbar">
-                <el-button-group>
+                <el-button-group  v-show="from=='edit'">
                     <el-button type="primary" size="small" @click="onAdd"><i class="fa fa-plus-square-o"></i>新建卷</el-button>
                     <el-button type="primary" size="small" @click="onEdit"><i class="fa fa-pencil-square-o"></i>编辑卷</el-button>
                     <el-button type="primary" size="small" @click="onVolume"><i class="fa fa-list-ol"></i>组卷 </el-button>
                     <el-button type="primary" size="small" @click="onDelete"><i class="fa fa-trash-o"></i>删除 </el-button>
                 </el-button-group>
-                <el-button-group>
+                <el-button-group  v-show="from=='edit'">
                     <el-button type="primary" size="small" @click="onWord(1)"><i class="fa fa-file-word-o"></i>1cm背签</el-button>
                     <el-button type="primary" size="small" @click="onWord(2)"><i class="fa fa-file-word-o"></i> 2cm背签</el-button>
                     <el-button type="primary" size="small" @click="onWord(3)"><i class="fa fa-file-word-o"></i>3cm背签</el-button>
                 </el-button-group>
+                <!--<el-button   type="primary" size="small" @click="onBook"  v-show="from=='search'"><i class="fa fa-book"></i>查册</el-button>-->
             </div>
         </header>
         <el-dialog v-show="from=='edit'" title="案卷管理"  v-model="dialogFormVisible"  size="auto" top="10px"  :close-on-click-modal="false" :close-on-press-escape="false" class="dialog">
@@ -83,11 +89,13 @@ export default {
             formLabelWidth:'90px',
             dialogFormVisible:false,
             dialogFormVolumnVisible:false,
+            typeList:[],
             form:this.initForm(),
             leftBook:[],
             rightBook:[],
             l:-1,
-            r:-1
+            r:-1,
+            activeId:0
         }
     },
     components: {
@@ -96,8 +104,8 @@ export default {
     },
     mounted:function(){
         let self=this;
+        this.initType();
         var grid=new LigerGrid(ServerUrl.volume.grid);
-        console.log(ServerUrl.volume.data);
         grid.getConfig({
             checkbox: this.from=='edit'?true:false,
             rownumbers: true,
@@ -108,7 +116,8 @@ export default {
             parms:{
                 sortname: "splxcode,xh",
                 sortorder: "asc",
-                pid:getQueryString("ID")
+                pid:getQueryString("ID"),
+                splxcode:""
             },
             callback: function(gridConfig) {
                 gridConfig.groupColumnName = 'splxcode';
@@ -150,6 +159,16 @@ export default {
                 gh:0,
                 gcode:0
             }
+        },
+        initType(){
+            var self=this;
+                //全部类型;
+            $.getJSON(ServerUrl.volume.applyType,{pid:getQueryString("ID")},function(res){
+                if (res.status == 1){
+                    self.typeList=res.data;
+                    console.log(self.typeList);
+                }
+            });
         },
         close(){
             this.l=-1;
@@ -348,6 +367,13 @@ export default {
                     console.log("order success");
                 });
             }
+        },
+        onGoVolume(type,index){
+            this.activeId=index;
+            checkedID=[];
+            g.options.newPage = 1;
+            g.options.parms.splxcode = type;
+            g.reload();
         }
     }
 }
@@ -371,5 +397,9 @@ export default {
     }
     .el-loading-mask {
         background-color: rgba(0,0,0,.5);
+    }
+    .activeBtn{
+       background:red;
+       border-color:red;
     }
 </style>
