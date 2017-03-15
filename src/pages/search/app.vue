@@ -132,8 +132,8 @@ export default {
             if(selectRow !=null){
                 if(selectRow.bmename=="cj")
                 {
-                    self.$notify({
-                        title: '提示',
+                    self.$message({
+                        duration:1000,
                         message:  '城建类档案无法查询案卷！',
                         type: 'warning'
                     });
@@ -159,8 +159,8 @@ export default {
                 }
                 else
                 {
-                    this.$notify({
-                        title: '提示',
+                    this.$message({
+                        duration:1000,
                         message:  '地块号缺失，无法定位！',
                         type: 'warning'
                     });

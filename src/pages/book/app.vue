@@ -224,8 +224,8 @@ export default {
                             });
                         
                     } else {
-                         self.$notify({
-                            title: '操作失败',
+                         self.$message({
+                            duration:1000,
                             message:  '封面生成失败：' + res.message,
                             type: 'error'
                         });

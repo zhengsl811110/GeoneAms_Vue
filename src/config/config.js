@@ -237,8 +237,8 @@ export function getQueryString(name) {
 export function getGridSelectedRow(g,vue){
     let rowSelected = g.getSelectedRow();
     if (!rowSelected) {
-        vue.$notify({
-          title: '警告',
+        vue.$message({
+          duration:1000,
           message: '请选中需要操作的行',
           type: 'warning'
         });

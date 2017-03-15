@@ -137,8 +137,8 @@ export default {
             let selectRow=getGridSelectedRow(g,this);
             if(selectRow !=null){
               if(parseInt(selectRow.total) > 0){
-                  this.$notify({
-                      title: '提示',
+                  this.$message({
+                      duration:1000,
                       message: '删除失败：当前记录下存在材料清单!',
                       type: 'error'
                   });

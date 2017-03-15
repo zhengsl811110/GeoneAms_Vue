@@ -8,16 +8,16 @@ export default class Server{
     save(self,g){
         $.post(this.url, {params: JSON.stringify(this.params)},function(res) {
             if (res.status === 1) {
-                self.$notify({
-                    title: '成功',
+                self.$message({
+                    duration:1000,
                     message: '操作成功',
                     type: 'success'
                 });
                 g.reload();
             }
             else{
-                self.$notify({
-                    title: '成功',
+                self.$message({
+                    duration:1000,
                     message: '操作失败:'+res.message,
                     type: 'error'
                 });
@@ -29,16 +29,16 @@ export default class Server{
     del(self,g,params){
         $.post(this.url,params,function(res){
             if(res.status==1){
-                self.$notify({
-                    title: '成功',
+                self.$message({
+                    duration:1000,
                     message: '删除成功',
                     type: 'success'
                 });
                 g.reload();
             }
             else{
-                self.$notify({
-                    title: '操作失败',
+                self.$message({
+                    duration:1000,
                     message:  '操作失败：' + res.message,
                     type: 'error'
                 });
@@ -55,8 +55,8 @@ export default class Server{
         }).then(()=>{
             thisServer.del(self,g,{ids:this.params}); 
         }).catch(()=>{
-            self.$notify({
-                title: '提示',
+            self.$message({
+                duration:1000,
                 message: '取消删除操作',
                 type: 'info'
             });
@@ -71,24 +71,24 @@ export default class Server{
         }).then(()=>{
             $.post(this.url,params,function(res){
                 if(res.status==1){
-                    self.$notify({
-                        title: '成功',
+                    self.$message({
+                        duration:1000,
                         message: '删除成功',
                         type: 'success'
                     });
                     g.reload();
                 }
                 else{
-                    self.$notify({
-                        title: '操作失败',
+                    self.$message({
+                        duration:1000,
                         message:  '操作失败：' + res.message,
                         type: 'error'
                     });
                 }
             });
         }).catch(()=>{
-            self.$notify({
-                title: '提示',
+            self.$message({
+                duration:1000,
                 message: '取消删除操作',
                 type: 'info'
             });
@@ -105,8 +105,8 @@ export default class Server{
             $.post(url,{ id: this.params,source: source},function(res){
                 if (res.status === 1) {
                     if (res.data[0].count > 0){
-                        self.$notify({
-                            title: '警告',
+                        self.$message({
+                            duration:1000,
                             message: '删除失败：当前项目下存在申请记录!',
                             type: 'warning'
                         });
@@ -119,8 +119,8 @@ export default class Server{
                 }
             });
         }).catch(()=>{
-            self.$notify({
-                title: '提示',
+            self.$message({
+                duration:1000,
                 message: '取消删除操作',
                 type: 'info'
             });
@@ -155,16 +155,16 @@ export default class Server{
 
         $.post(this.url,{ids: ids.join(','), xhs: xhs.join(',')},function(res){
             if(res.status==1){
-                self.$notify({
-                    title: '成功',
+                self.$message({
+                    duration:1000,
                     message: '调序成功',
                     type: 'success'
                 });
                 g.reload();
             }
             else{
-                self.$notify({
-                    title: '错误',
+                self.$message({
+                    duration:1000,
                     message: '调序失败：' + res.message,
                     type: 'error'
                 });

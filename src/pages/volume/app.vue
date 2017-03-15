@@ -200,8 +200,8 @@ export default {
             let selectRow=getGridSelectedRow(g,this);
             if(selectRow !=null){          
                 if(selectRow.cbt!=""){
-                    this.$notify({
-                        title: '警告',
+                    this.$message({
+                        duration:1000,
                         message: '该卷下存在册，删除失败',
                         type: 'warning'
                     });
@@ -254,8 +254,8 @@ export default {
                             }).catch(() => {
                         });
                 } else {
-                    self.$notify({
-                        title: '错误提示',
+                    self.$message({
+                        duration:1000,
                         message: '生成失败：' + res.msg,
                         type: 'error'
                     });
