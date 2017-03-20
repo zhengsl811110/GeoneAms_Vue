@@ -127,10 +127,11 @@ export default class Server{
         });
     }
 
-    order(self,g,orderType="g"){
+    order(self,g,orderType="g",cRow=null){
         let ids = [], xhs = [];
         if(orderType=='g'){//分组排序
             let groups = g.groups, changedGroups=[];
+            console.log(cRow);
             groups.forEach(function(group) {
                 if (group[0].splxcode === cRow.splxcode) {
                     changedGroups = group;

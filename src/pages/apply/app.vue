@@ -107,7 +107,7 @@ export default {
                     let server=new Server(ServerUrl.apply.order);
                     gridConfig.onRowDragDrop = function(editParm) {
                         if (editParm.near === null) return false;
-                        server.order(self,g);
+                        server.order(self,g,"g",editParm.near);
                     };
                     gridConfig.groupRender = function(splxcode, groupdata) {
                         return '审批类型：' + splxcode + ' (' + groupdata.length + ')';
