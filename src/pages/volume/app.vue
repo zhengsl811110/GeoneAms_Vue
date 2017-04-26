@@ -31,7 +31,7 @@
                     <label>待组卷</label>
                     <div class='grid-content'>
                         <ul class="bookList">
-                            <li v-for="(book,index) in leftBook" @click="onLeftSelected(index,book)" :class="{active:index == l}">{{book.cbt}}</li>
+                            <li v-for="(book,index) in leftBook" @click="onLeftSelected(index,book)" :class="{active:book.cbt == l}">{{book.cbt}}</li>
                         </ul>
                     </div>
                 </el-col>
@@ -49,7 +49,7 @@
                     <label>已组卷</label>
                     <div class='grid-content'>
                         <ul class="bookList">
-                            <li v-for="(book,index) in rightBook" @click="onRightSelected(index,book)" :class="{active:index == r}">{{book.cbt}}</li>
+                            <li v-for="(book,index) in rightBook" @click="onRightSelected(index,book)" :class="{active:book.cbt == r}">{{book.cbt}}</li>
                         </ul>
                     </div>
                 </el-col>
@@ -93,8 +93,8 @@ export default {
             form:this.initForm(),
             leftBook:[],
             rightBook:[],
-            l:-1,
-            r:-1,
+            l:'',
+            r:'',
             activeName:0
         }
     },
@@ -293,19 +293,19 @@ export default {
             checkedID.splice(i, 1);
         },
         onLeftSelected(index,book){
-            this.l = index;
-            this.r = -1;
+            this.l = book.cbt;
+            this.r = '';
             cRow = book;
         },
         onRightSelected(index,book){
-            this.r = index;
-            this.l = -1;
+            this.r =book.cbt;
+            this.l = '';
             cRow = book;
             console.log(this.r);
         },
         onGo(){
-            if (this.l === -1) return false;
-            this.l = -1;
+            if (this.l ==='') return false;
+            this.l = '';
             let selectRow=getGridSelectedRow(g,this);
             if(selectRow !=null){
                 this.rightBook.push(cRow);
@@ -316,8 +316,8 @@ export default {
             }
         },
         onBack(){
-            if (this.r === -1) return false;
-            this.r = -1;
+            if (this.r === '') return false;
+            this.r = '';
             let selectRow=getGridSelectedRow(g,this);
             if(selectRow !=null){
                 this.leftBook.push(cRow);
